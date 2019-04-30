@@ -1,0 +1,47 @@
+<html>
+    <head>
+        <title>1st Assignment</title>
+        <script src="https://cdn.babylonjs.com/babylon.js"></script>
+        <script src="https://preview.babylonjs.com/loaders/babylonjs.loaders.min.js"></script>
+        <script src="https://code.jquery.com/pep/0.4.3/pep.js"></script>
+        <style>
+            html, body {
+                overflow: hidden;
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            #render {
+                width: 100%;
+                height: 100%;
+                touch-action: none;
+            }
+        </style>
+    </head>
+    <body>
+        <canvas id="render" touch-action="none">
+        <script>
+            var canvas = document.getElementById("render");
+            var engine = new BABYLON.Engine(canvas, true);
+
+            var createScene = function() {
+            var scene = new BABYLON.Scene(engine);
+            BABYLON.SceneLoader.Append("asset/l00_intro/", "l00_intro.obj", scene);
+
+            var camera = new BABYLON.ArcRotateCamera("Camera", -Math.PI / 4, Math.PI / 4, 2000, new BABYLON.Vector3(0,0,-1500), scene);
+                camera.attachControl(canvas, true);
+
+                return scene;
+            }
+
+            var scene = createScene();
+            engine.runRenderLoop(function() {
+            scene.render();
+            });
+      window.addEventListener("resize", function() {
+         engine.resize();
+      });
+        </script>
+    </body>
+</html>
